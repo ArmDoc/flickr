@@ -17,18 +17,19 @@ function flickr () {
 	var receivetRequests = 0;
 	var arr = []
 	
-	$('.input').val().split(",").forEach(function (inputItem) {
-		if (inputItem.trim() !== "")	{
+	$('.input').val().split(",").forEach(function (item) {
+		item = item.trim();
+		if (item !== "")	{
 			sentRequests ++ 
-			$('.requests').append(`<div class="request" data-name="`+ inputItem +`">`+ inputItem+`</div>`)
+			$('.requests').append(`<div class="request" data-name="` + item + `"><span class ="title">` + item + `</span></div>`)
 			$.ajax({
-				url:'https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key='+ key +'&format=json&text='+ inputItem.trim() +'&nojsoncallback=1',
+				url:'https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + key + '&format=json&text=' + item + '&nojsoncallback=1',
 				success : function (response,name) {
 					receivetRequests ++
-					response.photos.photo.slice(0,5).forEach(function(item) {
+					response.photos.photo.slice(0,5).forEach(function(photo) {
 						arr.push({
-							url :`https://live.staticflickr.com/`+item.server+`/`+ item.id+`_`+item.secret+`.jpg`,
-							name : inputItem
+							url :`https://live.staticflickr.com/` + photo.server + `/` + photo.id + `_` + photo.secret + `.jpg`,
+							name : item
 						});
 					})
 					
@@ -40,8 +41,8 @@ function flickr () {
 							arr[b] = a
 						}
 
-						arr.forEach(function (item) {
-							$('.blog').append(`<img class='img `+item.name+`' src='`+item.url+`" name="`+item.name+`'>`)
+						arr.forEach(function (photo) {
+							$('.blog').append(`<img class='img `+photo.name+`' src='`+photo.url+`" name="`+photo.name+`'>`)
 						});
 
 						$(".blog").sortable({

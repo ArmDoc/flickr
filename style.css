@@ -19,8 +19,8 @@
 
 .img {
 	display: block;
-	width: 150px;
-	height: 150px;
+	width: 100px;
+	height: 100px;
 	object-fit: cover; 
 }
 
@@ -31,6 +31,7 @@
 }
 
 .request{
+	position: relative;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-around;
@@ -39,10 +40,14 @@
 	font-style: italic;
 	font-weight: bold;
 	text-transform: uppercase;
-	height: 400px;
-	width: 30%;
-	margin: 10px;
+	height: 300px;
+	width: 50%;
+	margin: 1%;
 	border-radius: 15px;
 	border-style: solid;
-	background-color: silver;
+}
+
+.title{
+	position: absolute;
+	top: 2%;
 }
